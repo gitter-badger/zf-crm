@@ -7,6 +7,9 @@ echo $this->doctype("HTML5");
 <head>
     <meta charset="utf-8">
     <title>CRM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Small CRM App based on needs">
+    <meta name="author" content="marcusmyers">
     <!--  Styles -->
 	<link href="/css/bootstrap.css" rel="stylesheet" />
 	<link href="/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -29,11 +32,36 @@ echo $this->doctype("HTML5");
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="<?php echo $this->url() ?>">CRM</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="<?php echo $this->url() ?>">Home</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
+          <?php 
+          		$auth = Zend_Auth::getInstance();
+          		if($auth->hasIdentity()){
+          			$location = $_SERVER['REQUEST_URI'];
+          			$arrUri = explode("/",$location);
+          			$budget = "";
+          			$rev = "";
+          			$export = "";
+          			$home = "";
+          			if(sizeof($arrUri) > 2) {
+	          			switch($arrUri[2]){
+	          				case "bud":
+	          				case "budedit":
+	          					$budget = " active";
+	          				break;
+	          				case "rev":
+	          				case "revedit":
+	          					$rev = " active";
+	          				break;
+	          			}
+          			} else {
+          				$home = " class='active'";
+          			}
+                echo '<div class="nav-collapse">
+                <ul class="nav">
+              		<li class="active"><a href="<?php echo $this->url() ?>">Home</a></li>
+            	</ul>
+          		</div><!--/.nav-collapse -->';
+          		}
+          ?>
         </div>
       </div>
     </div>
@@ -42,10 +70,15 @@ echo $this->doctype("HTML5");
 <?php echo $this->layout()->content; ?>
 
 	</div>
-	<footer class="footer">
+	<footer class="footer container">
         <p>Designed and built by <a href="http://www.emoxter.com" target="_blank">marcusmyers</a>. &copy; 2012</p>
+        <p>Code available at <a href="http://github.com/marcusmyers/zf-crm"><span class="label label-inverse">github</span></a></p>
 	</footer>
 	<script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-tooltip.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-popover.js"></script>
 </body>
 </html>
