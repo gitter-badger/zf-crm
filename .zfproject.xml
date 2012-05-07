@@ -25,9 +25,11 @@
         <dbTableDirectory>
           <dbTableFile dbTableName="Users"/>
           <dbTableFile dbTableName="Roles"/>
+          <dbTableFile dbTableName="Customers"/>
         </dbTableDirectory>
         <modelFile modelName="Users"/>
         <modelFile modelName="Roles"/>
+        <modelFile modelName="Customers"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
