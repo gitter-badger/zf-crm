@@ -30,6 +30,7 @@
         <modelFile modelName="Users"/>
         <modelFile modelName="Roles"/>
         <modelFile modelName="Customers"/>
+        <modelFile modelName="UsersMapper"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
