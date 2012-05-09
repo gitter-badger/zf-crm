@@ -35,13 +35,17 @@ echo $this->doctype("HTML5");
           <?php 
           		$auth = Zend_Auth::getInstance();
           		if($auth->hasIdentity()){
+          			$identity = $auth->getIdentity();
           			$location = $_SERVER['REQUEST_URI'];
           			$arrUri = explode("/",$location);
           			/*$budget = "";
           			$rev = "";
           			$export = "";*/
           			$home = "";
-          			$search = "";
+          			$customer = "";
+          			$user = "";
+          			$qadd = "";
+          			$atickets = "";
           			if(sizeof($arrUri) > 2) {
 	          			/*switch($arrUri[2]){
 	          				case "bud":
@@ -56,12 +60,27 @@ echo $this->doctype("HTML5");
           			} else {
           				$home = " class='active'";
           			}
-                echo '<div class="nav-collapse">
-                <ul class="nav">
-              		<li'.$home.'><a href="<?php echo $this->url() ?>">Home</a></li>
-              		<li'.$search.'>Customer</li>
-            	</ul>
-          		</div><!--/.nav-collapse -->';
+	                echo '<div class="nav-collapse">
+	                <ul class="nav">
+	                	<li class="divider-vertical"></li>
+	                	<li'.$home.'><a href="<?php echo $this->url() ?>">Home</a></li>
+	              		<li class="dropdown'.$customer.'">
+	              			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Customer <b class="caret"></b></a>
+	              			<ul class="dropdown-menu">
+	              				<li><a href="#">Add</a></li>
+	              				<li><a href="#">Search History</a></li>
+	              			</ul>
+	              		</li>
+	                    <li'.$qadd.'><a href="#">Quick Add</a></li>
+	                	<li'.$atickets.'><a href="#">Assigned</a></li>';
+	                if($identity['role'] === "c839dea6d26810e52a84925a1259dd9f" || $identity['role'] === "72396390b43aa866e4434d2152e9bf2d"){
+	                	echo '<li class="divider-vertical"></li>
+	                	<li'.$user.'><a href="/user/add">Add User</a></li>
+	                	<li><a href="/customer/labels">Export for Labels</a></li>';
+	                }
+	            	echo '</ul>
+	          		</div><!--/.nav-collapse -->';
+	                echo '<ul class="nav pull-right"><li class="divider-vertical"></li><li><a href="/index/logout">Logout</a></li></ul>';
           		}
           ?>
         </div>

@@ -36,7 +36,7 @@ class IndexController extends Zend_Controller_Action
     			$values['username'] = $user->getUsername();
     			$values['pwd'] = $this->getRequest()->getPost('pwd');
     			if($this->_process($values)){
-    				$data = array('userid'=>$user->getUsername(),'name'=>$user->getName(),'role'=>$user->getRguid());
+    				$data = array('userid'=>$user->getGuid(),'name'=>$user->getName(),'role'=>$user->getRguid());
     				$auth->getStorage()->write($data);
     				$this->_helper->redirector->gotoUrl('/');
     			}
@@ -48,6 +48,11 @@ class IndexController extends Zend_Controller_Action
     	} else {
     		$this->view->form = $form;
     	}
+    }
+    
+    public function logoutAction(){
+    	Zend_Auth::getInstance()->clearIdentity();
+    	$this->_helper->redirector->gotoUrl('/');
     }
     
     protected function _process($values)
