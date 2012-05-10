@@ -14,10 +14,22 @@ class IndexController extends Zend_Controller_Action
     	if($auth->hasIdentity()){
     		// Authenticated User
     		$this->view->headScript()->appendScript("$('.dropdown-toggle').dropdown();");
+    		$search = new CRM_Form_Search();
+    		$this->view->search = $search;
     	} else {
     		// Non-Authenticated User
         	$form = new CRM_Form_Login();
         	$this->view->form = $form;
+    	}
+    }
+    
+    public function resultsAction()
+    {
+    	$search = new CRM_Form_Search();
+    	if($this->getRequest()->getPost('keyword')){
+    		$arrValues = $this->getRequest()->getPost();
+    	} else {
+    		$this->_helper->redirector->gotoUrl('/');
     	}
     }
 
@@ -48,13 +60,15 @@ class IndexController extends Zend_Controller_Action
     	} else {
     		$this->view->form = $form;
     	}
+    	
     }
-    
-    public function logoutAction(){
+
+    public function logoutAction()
+    {
     	Zend_Auth::getInstance()->clearIdentity();
     	$this->_helper->redirector->gotoUrl('/');
     }
-    
+
     protected function _process($values)
     {
     	$dbAdapter = Zend_Db_Table::getDefaultAdapter();
@@ -75,6 +89,7 @@ class IndexController extends Zend_Controller_Action
     
     	return false;
     }
-
 }
+
+
 
