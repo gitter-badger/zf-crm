@@ -12,6 +12,7 @@ class CalendarController extends Zend_Controller_Action
     {
         // action body
     	/* sample usages */
+    	$this->view->headScript()->appendScript("$('.navbar').hide();");
     	
     	$this->view->calendar = $this->draw_calendar(date('m'),date('Y'));
     }
