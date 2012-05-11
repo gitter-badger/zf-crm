@@ -5,7 +5,7 @@ class CRM_Form_Login extends Zend_Form
 
     public function init()
     {
-        $this->setMethod('post')->setName('login')->setAction('/index/login');
+        $this->setMethod('post')->setName('login')->setAction('/index/login')->setOptions(array('class'=>'well'));
         
         $this->addElement('text','uid',array(
         	'required'=>true,

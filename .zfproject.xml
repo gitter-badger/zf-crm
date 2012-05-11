@@ -16,10 +16,18 @@
         <controllerFile controllerName="Calendar">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Users">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="add"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="delete"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Login"/>
         <formFile formName="Search"/>
+        <formFile formName="User"/>
+        <formFile formName="UserEdit"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -31,11 +39,16 @@
           <dbTableFile dbTableName="Users"/>
           <dbTableFile dbTableName="Roles"/>
           <dbTableFile dbTableName="Customers"/>
+          <dbTableFile dbTableName="Tickets"/>
         </dbTableDirectory>
         <modelFile modelName="Users"/>
         <modelFile modelName="Roles"/>
         <modelFile modelName="Customers"/>
         <modelFile modelName="UsersMapper"/>
+        <modelFile modelName="Tickets"/>
+        <modelFile modelName="TicketsMapper"/>
+        <modelFile modelName="CustomersMapper"/>
+        <modelFile modelName="RolesMapper"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
@@ -51,6 +64,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Calendar">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Users">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Users">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Users">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Users">
+            <viewScriptFile forActionName="delete"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
