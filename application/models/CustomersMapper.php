@@ -48,6 +48,33 @@ class CRM_Model_CustomersMapper
 		}
 	}
 	
+	public function findByGuid($id)
+	{
+		$result = $this->getDbTable()->fetchRow(
+				$this->getDbTable()->select()
+				->where('guid = ?',$id)
+		);
+		if($result == null){
+			return;
+		}
+		//$row = $result->current();
+		$customer = new CRM_Model_Customers();
+		$customer->setId($result->id)
+				  ->setGuid($result->guid)
+				  ->setFname($result->f_name)
+				  ->setLname($result->l_name)
+				  ->setAddress1($result->address_1)
+				  ->setAddress2($result->address_2)
+				  ->setCity($result->city)
+				  ->setState($result->state)
+				  ->setZip($result->zip)
+				  ->setPhone($result->phone)
+				  ->setMobile($result->mobile)
+				  ->setIsactive($result->is_active);
+		
+		return $customer;
+	}
+	
 	public function findByKeyword($kw)
 	{
 		$search = $this->getDbTable()->select()

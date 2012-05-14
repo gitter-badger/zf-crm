@@ -6,7 +6,7 @@ class CRM_Form_AddCustomer extends Zend_Form
     public function init()
     {
         /* Form Elements & Other Definitions Here ... */
-    	$this->setMethod('post')->setName('login')->setAction('/customers/add')->setOptions(array('class'=>'well'));
+    	$this->setMethod('post')->setName('addcustomer')->setAction('/customers/add')->setOptions(array('class'=>'well'));
     	
     	$this->addElement('text','fname',array(
     			'required'=>true,

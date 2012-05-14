@@ -5,7 +5,7 @@ class CRM_Form_User extends Zend_Form
 
     public function init()
     {
-        $this->setMethod('post')->setName('login')->setAction('/users/add')->setOptions(array('class'=>'well'));
+        $this->setMethod('post')->setName('users')->setAction('/users/add')->setOptions(array('class'=>'well'));
         
         $this->addElement('text','username',array(
         	'required'=>true,

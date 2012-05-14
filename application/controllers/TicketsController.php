@@ -22,7 +22,19 @@ class TicketsController extends Zend_Controller_Action
     {
     	$auth = Zend_Auth::getInstance();
     	if($auth->hasIdentity()){
-    		$uguid = $this->__getParam('guid');
+    		$uguid = $this->getRequest()->getParam('guid');
+    		$cMapper = new CRM_Model_CustomersMapper();
+    		$this->view->customer = $cMapper->findByGuid($uguid);
+    		$form = new CRM_Form_AddTicket();
+    		if($this->getRequest()->getPost()){
+    			
+    		} else {
+    			$this->view->headScript()->appendScript("$(function() {
+		$('.datePicker').datepicker();
+	});");
+    			$form->addElement('hidden','cguid',array("value"=>$uguid));
+    			$this->view->form = $form;
+    		}
     	} else {
     		$this->_helper->redirector->gotoUrl('/');
     	}
