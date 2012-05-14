@@ -22,12 +22,21 @@
           <actionMethod actionName="edit"/>
           <actionMethod actionName="delete"/>
         </controllerFile>
+        <controllerFile controllerName="Customers">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="add"/>
+        </controllerFile>
+        <controllerFile controllerName="Tickets">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="assigned"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Login"/>
         <formFile formName="Search"/>
         <formFile formName="User"/>
         <formFile formName="UserEdit"/>
+        <formFile formName="AddCustomer"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -76,6 +85,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Users">
             <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customers">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customers">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Tickets">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Tickets">
+            <viewScriptFile forActionName="assigned"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
