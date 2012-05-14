@@ -13,7 +13,6 @@ class UsersController extends Zend_Controller_Action
         // action body
     	$auth = Zend_Auth::getInstance();
     	if($auth->hasIdentity()){
-    		$this->view->headScript()->appendScript("$('.dropdown-toggle').dropdown();");
     		$mapper = new CRM_Model_UsersMapper();
     		$rmapper = new CRM_Model_RolesMapper();
     		$this->view->roles = $rmapper->fetchArray();
@@ -29,7 +28,6 @@ class UsersController extends Zend_Controller_Action
         // action body
     	$auth = Zend_Auth::getInstance();
     	if($auth->hasIdentity()){
-    		$this->view->headScript()->appendScript("$('.dropdown-toggle').dropdown();");
     		$form = new CRM_Form_User();
     		if($this->getRequest()->getPost()){
     			if($form->isValid($this->getRequest()->getPost())){
@@ -52,7 +50,6 @@ class UsersController extends Zend_Controller_Action
     // action body
     	$auth = Zend_Auth::getInstance();
     	if($auth->hasIdentity()){
-    		$this->view->headScript()->appendScript("$('.dropdown-toggle').dropdown();");
     		$form = new CRM_Form_UserEdit();
     		$user = new CRM_Model_Users();
     		$mapper = new CRM_Model_UsersMapper();

@@ -17,6 +17,16 @@ class TicketsController extends Zend_Controller_Action
     		$this->_helper->redirector->gotoUrl('/');
     	}
     }
+    
+    public function addAction()
+    {
+    	$auth = Zend_Auth::getInstance();
+    	if($auth->hasIdentity()){
+    		$uguid = $this->__getParam('guid');
+    	} else {
+    		$this->_helper->redirector->gotoUrl('/');
+    	}
+    }
 
     public function assignedAction()
     {

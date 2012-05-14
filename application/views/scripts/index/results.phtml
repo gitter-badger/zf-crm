@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="span12">
+		<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Info</th>
+				<th>Add Ticket | History</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php 
+		if($this->entries){
+			foreach($this->entries as $entry){
+				echo "\n\t\t\t\t<tr>";
+				echo "\n\t\t\t\t\t<td>".$entry->getFname()." ".$entry->getLname()."</td>";
+				$info = $entry->getAddress1()."<br/>";
+				if($entry->getAddress2()){
+					$info .= $entry->getAddress2()."<br/>";
+				}
+				$info .= $entry->getCity().", ".$entry->getState()." ".$entry->getZip() ."<br/>";
+				$info .= "(p) ".$entry->getPhone() ."<br/>";
+				$info .= "(m) ".$entry->getMobile();
+				echo "\n\t\t\t\t\t<td>$info</td>";
+				echo "\n\t\t\t\t\t<td><a class='btn btn-primary' href='/tickets/add/guid/".$entry->getGuid()."' alt='Add Ticket'><i class='icon-plus icon-white'></i> Ticket</a> <a class='btn btn-info' href='/tickets/history/guid/".$entry->getGuid()."'><i class='icon-list-alt icon-white'></i> History</a></td>";
+				echo "\n\t\t\t\t</tr>";
+			}
+		} else {
+			echo "\n\t\t\t\t<tr><td colspan='3'>No entries found.</td></tr>";
+		}
+		?>
+		</tbody>
+		</table>
+	</div>
+</div>

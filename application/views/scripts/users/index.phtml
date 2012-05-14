@@ -17,7 +17,11 @@
 					echo "\n\t\t\t\t\t<td>".$entry->getName()."</td>";
 					echo "\n\t\t\t\t\t<td>".$entry->getUsername()."</td>";
 					echo "\n\t\t\t\t\t<td>".$role."</td>";
-					echo "\n\t\t\t\t\t<td><a href='/users/edit/guid/".$entry->getGuid()."'>Edit</a> | <a href='/users/delete/guid/".$entry->getGuid()."'>Delete</a>	</td>";
+					if('c839dea6d26810e52a84925a1259dd9f' != $entry->getRguid()){
+						echo "\n\t\t\t\t\t<td><a href='/users/edit/guid/".$entry->getGuid()."'>Edit</a> | <a href='/users/delete/guid/".$entry->getGuid()."'>Delete</a>	</td>";
+					} else {
+						echo "\n\t\t\t\t\t<td><span class='label label-important'>This account can NOT be deleted</span></td>";
+					}
 					echo "\n\t\t\t\t</tr>";
 				}
 				?>

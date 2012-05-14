@@ -183,5 +183,10 @@ class CRM_Model_Customers
 	{
 		return $this->_is_active;
 	}
+	
+	public function toLabels()
+	{
+		return array($this->_f_name,$this->_l_name,$this->_address_1,$this->_address_2,$this->_city,$this->_state,$this->_zip);		
+	}
 }
 

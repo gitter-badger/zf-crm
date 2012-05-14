@@ -13,7 +13,6 @@ class IndexController extends Zend_Controller_Action
     	$auth = Zend_Auth::getInstance();
     	if($auth->hasIdentity()){
     		// Authenticated User
-    		$this->view->headScript()->appendScript("$('.dropdown-toggle').dropdown();");
     		$search = new CRM_Form_Search();
     		$this->view->search = $search;
     	} else {
@@ -25,9 +24,13 @@ class IndexController extends Zend_Controller_Action
     
     public function resultsAction()
     {
-    	$search = new CRM_Form_Search();
-    	if($this->getRequest()->getPost('keyword')){
-    		$arrValues = $this->getRequest()->getPost();
+    	//$search = new CRM_Form_Search();
+    	$auth = Zend_Auth::getInstance();
+    	if($auth->hasIdentity()){
+    		if($this->getRequest()->getPost()){
+    			$mapper = new CRM_Model_CustomersMapper();
+    			$this->view->entries = $mapper->findByKeyword($this->getRequest()->getPost('keyword'));
+    		}
     	} else {
     		$this->_helper->redirector->gotoUrl('/');
     	}
