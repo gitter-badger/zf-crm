@@ -42,6 +42,7 @@ class CRM_Model_CustomersMapper
 		if(null === ($id = $c->getId())){
 			$data['guid'] = md5(microtime()+rand());
 			$this->getDbTable()->insert($data);
+			return $data['guid'];
 		} else {
 			$data['is_active'] = $c->getIsactive();
 			$this->getDbTable()->update($data, array('guid=?' => $c->getGuid()));
@@ -115,6 +116,14 @@ class CRM_Model_CustomersMapper
 		}
 	}
 	
+	public function deleteByGuid($id)
+	{
+		$where = $this->getDbTable()->getAdapter()->quoteInto('guid = ?', $id);
+		if($this->getDbTable()->delete($where)){
+			return true;
+		}
+	}
+	
 	public function fetchAll()
 	{
 		$resultSet = $this->getDbTable()->fetchAll();
@@ -134,6 +143,16 @@ class CRM_Model_CustomersMapper
 				  ->setMobile($row->mobile)
 				  ->setIsactive($row->is_active);
 			$entries[] = $entry;
+		}
+		return $entries;
+	}
+	
+	public function fetchAllForTickets()
+	{
+		$resultSet = $this->getDbTable()->fetchAll();
+		$entries = array();
+		foreach($resultSet as $row){
+			$entries[$row->guid] = $row->f_name ." " .$row->l_name;
 		}
 		return $entries;
 	}

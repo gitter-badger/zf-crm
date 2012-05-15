@@ -39,22 +39,25 @@ echo $this->doctype("HTML5");
           			$identity = $auth->getIdentity();
           			$location = $_SERVER['REQUEST_URI'];
           			$arrUri = explode("/",$location);
-          			//var_dump($arrUri);
-          			/*$budget = "";
-          			$rev = "";
-          			$export = "";*/
           			$home = "";
           			$customer = "";
           			$user = "";
-          			$qadd = "";
           			$atickets = "";
           			if(sizeof($arrUri) >= 2) {
 	          			switch($arrUri[1]){
-	          				case "customer":
+	          				case "customers":
 	          					$customer = " active";
 	          				break;
 	          				case "users":
 	          					$user = " active";
+	          				break;
+	          				
+	          				case "tickets":
+	          					$atickets = " active";
+	          				break;
+	          				
+	          				default:
+	          					$home = " class='active'";
 	          				break;
 	          			}
           			} else {
@@ -71,8 +74,13 @@ echo $this->doctype("HTML5");
 	              				<li><a href="/customers">List Customers</a></li>
 	              			</ul>
 	              		</li>
-	                    <li'.$qadd.'><a href="#">Quick Add</a></li>
-	                	<li'.$atickets.'><a href="#">Assigned</a></li>';
+	              		<li class="dropdown'.$atickets.'">
+	              			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets <b class="caret"></b></a>
+	              			<ul class="dropdown-menu">
+	                			<li><a href="/tickets/assigned">Assigned</a></li>
+	                			<li><a href="/tickets">Open Tickets</a></li>
+	               			</ul>
+	                	</li>';
 	                if($identity['role'] === "c839dea6d26810e52a84925a1259dd9f" || $identity['role'] === "72396390b43aa866e4434d2152e9bf2d"){
 	                	echo '<li class="divider-vertical"></li>
 	                	<li class="dropdown'.$user.'">

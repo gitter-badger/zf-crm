@@ -22,11 +22,11 @@
 						$info .= "(p) ".$entry->getPhone() ."<br/>";
 						$info .= "(m) ".$entry->getMobile();
 						echo "\n\t\t\t\t\t<td>$info</td>";
-						echo "\n\t\t\t\t\t<td><a href='/tickets/add/guid/".$entry->getGuid()."'>Add Ticket</a> | <a href='/customers/delete/guid/".$entry->getGuid()."'>Delete</a></td>";
+						echo "\n\t\t\t\t\t<td><a class='btn btn-primary' href='/tickets/add/guid/".$entry->getGuid()."'><i class='icon-plus icon-white'></i> Ticket</a> <a class='btn btn-danger' href='/customers/delete/guid/".$entry->getGuid()."'><i class='icon-remove icon-white'></i> Delete</a></td>";
 						echo "\n\t\t\t\t</tr>";
 					}
 				} else {
-					echo "\n\t\t\t\t<tr><td colspan='3'>No entries found.</td></tr>";
+					echo "\n\t\t\t\t<tr><td colspan='3'>No entries found. Click <a href='/customers/add'>here</a> to add a new one.</td></tr>";
 				}
 				?>
 			</tbody>

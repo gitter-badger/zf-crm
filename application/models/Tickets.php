@@ -106,7 +106,7 @@ class CRM_Model_Tickets
 	
 	public function setDatecalled($date)
 	{
-		$this->_date_called = $date;
+		$this->_date_called = $this->_formatDate($date);
 		return $this;
 	}
 	
@@ -117,7 +117,7 @@ class CRM_Model_Tickets
 	
 	public function setDatescheduled($date)
 	{
-		$this->_date_scheduled = $date;
+		$this->_date_scheduled = $this->_formatDate($date);
 		return $this;
 	}
 	
@@ -146,6 +146,17 @@ class CRM_Model_Tickets
 	public function getIsopen()
 	{
 		return $this->_is_open;
+	}
+	
+	protected function _formatDate($string)
+	{
+		$arrDate = explode("/", $string);
+		if(count($arrDate) > 1){
+			$str = $arrDate[2] ."-".$arrDate[0]."-".$arrDate[1];
+		} else {
+			$str = $string;
+		}
+		return $str;
 	}
 }
 

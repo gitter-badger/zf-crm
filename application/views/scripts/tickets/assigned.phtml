@@ -1,4 +1,34 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Tickets</b> and script/action name <b>assigned</b></p>
+<div class="row">
+	<div class="span12">
+		<h2>Open Tickets Assigned to Me</h2>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Customer</th>
+					<th>Description</th>
+					<th>Date Called</th>
+					<th>Date Scheduled</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php 
+			if($this->entries){
+				foreach($this->entries as $entry){
+					$customer = $this->customers[$entry->getCguid()];
+					echo "\n\t\t\t\t<tr>";
+					echo "\n\t\t\t\t\t<td>".$customer."</td>";
+					echo "\n\t\t\t\t\t<td>".$entry->getDesc()."</td>";
+					echo "\n\t\t\t\t\t<td>".$entry->getDatecalled()."</td>";
+					echo "\n\t\t\t\t\t<td>".$entry->getDatescheduled()."</td>";
+					echo "\n\t\t\t\t\t<td><a class='btn btn-danger' href='/tickets/close/guid/".$entry->getGuid()."'><i class='icon-ok icon-white'></i> Close</a>  <a class='btn btn-primary' href='/tickets/edit/guid/".$entry->getGuid()."'><i class='icon-calendar icon-white'></i> Schedule</a></td>";
+					echo "\n\t\t\t\t</tr>";
+				}
+			} else {
+				echo "<tr><td colspan='5'>No entries found.</td></tr>";	
+			}
+			?>
+			</tbody>
+		</table>
+	</div>
 </div>

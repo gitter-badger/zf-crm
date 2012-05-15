@@ -14,18 +14,12 @@
 			<?php 
 			if($this->entries){
 				foreach($this->entries as $entry){
-					$customer = $this->customers[$entry->getCguid()];
-					if($entry->getUguid()){
-						$user = $this->users[$entry->getUguid()];
-					} else {
-						$user = "Not Assigned";
-					}
 					echo "\n\t\t\t\t<tr>";
-					echo "\n\t\t\t\t\t<td>".$customer."</td>";
+					echo "\n\t\t\t\t\t<td>".$this->customers[$entry->getCguid()]."</td>";
 					echo "\n\t\t\t\t\t<td>".$entry->getDesc()."</td>";
 					echo "\n\t\t\t\t\t<td>".$entry->getDatecalled()."</td>";
-					echo "\n\t\t\t\t\t<td>".$user."</td>";
-					echo "\n\t\t\t\t\t<td><a class='btn' href='/tickets/grab/guid/".$entry->getGuid()."'><i class='icon-ok'></i> Grab</a></td>";
+					echo "\n\t\t\t\t\t<td>".$this->users[$entry->getUguid()]."</td>";
+					echo "\n\t\t\t\t\t<td><a class='btn' href='/tickets/grab/guid/".$entry->getGuid()."/><i class='icon-ok icon-white'></i> Grab</a></td>";
 					echo "\n\t\t\t\t</tr>";
 				}
 			} else {

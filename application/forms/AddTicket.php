@@ -16,17 +16,20 @@ class CRM_Form_AddTicket extends Zend_Form
     			'filters' => array('StringTrim')
     	));
     	
-    	$this->addElement('text','date_called',array(
+    	$this->addElement('text','datecalled',array(
     			'required'=>true,
     			'placeholder'=>'Date Called',
     			'class'=>'input-medium datePicker',
     			'filters' => array('StringTrim')
     	));
     	
-    	$this->addElement('text','date_scheduled',array(
+    	$this->addElement('text','datescheduled',array(
     			'placeholder'=>'Date Scheduled',
     			'class'=>'input-medium datePicker',
     			'filters' => array('StringTrim')
+    	));
+    	
+    	$this->addElement('select','uguid',array(
     	));
 //     	$this->addElement('text','device',array(
 //     			'placeholder'=>'Device Barcode',
@@ -38,6 +41,14 @@ class CRM_Form_AddTicket extends Zend_Form
     			'label' => 'Submit',
     			'class' => "btn",
     	));
+    	
+    	$user = $this->getElement('uguid');
+    	$user->addMultiOption('','Assign a User');
+    	$bObj = new CRM_Model_UsersMapper();
+    	$entries = $bObj->fetchAll();
+    	foreach($entries as $entry){
+    		$user->addMultiOption($entry->guid,$entry->name);
+    	}
     }
 
 

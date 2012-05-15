@@ -30,14 +30,26 @@ class CustomersController extends Zend_Controller_Action
     				//$arrValues = $this->getRequest()->getPost();
     				$c = new CRM_Model_Customers($form->getValues());
     				$mapper = new CRM_Model_CustomersMapper();
-    				$mapper->save($c);
-    				$this->_helper->redirector->gotoUrl('/customers');
-    			} else {
-    				var_dump($this->getRequest()->getPost());
-    			}
+    				$cguid = $mapper->save($c);
+    				//$this->_helper->redirector->gotoUrl('/customers');
+    				$this->view->messages = "<div class='alert alert-success'><h4 class='alert-heading'>Success!</h4>Successfully added a customer click <a href='/tickets/add/guid/".$cguid."'>here</a> to add a ticket.</div>";
+    			} 
     		} else {
     			$this->view->form = $form;
     		}
+    	} else {
+    		$this->_helper->redirector->gotoUrl('/');
+    	}
+    }
+    
+    public function deleteAction()
+    {
+    	$auth = Zend_Auth::getInstance();
+    	if($auth->hasIdentity()){
+    		$guid = $this->getRequest()->getParam('guid');
+    		$mapper = new CRM_Model_CustomersMapper();
+    		$mapper->deleteByGuid($guid);
+    		$this->_helper->redirector->gotoUrl('/customers');
     	} else {
     		$this->_helper->redirector->gotoUrl('/');
     	}

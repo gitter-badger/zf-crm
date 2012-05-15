@@ -109,6 +109,16 @@ class CRM_Model_UsersMapper
 		}
 		return $entries;
 	}
+	
+	public function fetchAllForTickets()
+	{
+		$resultSet = $this->getDbTable()->fetchAll();
+		$entries = array();
+		foreach($resultSet as $row){
+			$entries[$row->guid] = $row->username;
+		}
+		return $entries;
+	}
 
 }
 
