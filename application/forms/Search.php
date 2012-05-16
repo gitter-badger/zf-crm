@@ -14,7 +14,7 @@ class CRM_Form_Search extends Zend_Form
     			'filters' => array('StringTrim')
     	));
     	
-    	$this->addElement('submit','submit',array(
+    	$this->addElement('submit','Submit',array(
     			'ignore' => true,
     			'label' => 'Submit',
     			'class' => "btn",

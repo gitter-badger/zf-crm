@@ -38,6 +38,7 @@ class UsersController extends Zend_Controller_Action
 	    			$this->_helper->redirector->gotoUrl('/users');
     			}
     		} else {
+    			$form->removeDecorator('htmlTag');
 	        	$this->view->form = $form;
     		}
     	} else {
@@ -59,6 +60,7 @@ class UsersController extends Zend_Controller_Action
     			$mapper->findByGuid($this->_getParam('guid'), $user);
     			$form->setElementFilters(array());
     			$this->_repopulateForm($form, $user);
+    			$form->removeDecorator('htmlTag');
 	        	$this->view->form = $form;
     		}
     	} else {

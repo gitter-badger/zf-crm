@@ -14,10 +14,12 @@ class IndexController extends Zend_Controller_Action
     	if($auth->hasIdentity()){
     		// Authenticated User
     		$search = new CRM_Form_Search();
+        	$search->removeDecorator('htmlTag');
     		$this->view->search = $search;
     	} else {
     		// Non-Authenticated User
         	$form = new CRM_Form_Login();
+        	$form->removeDecorator('htmlTag');
         	$this->view->form = $form;
     	}
     }
@@ -58,9 +60,11 @@ class IndexController extends Zend_Controller_Action
     		} else {
     			$this->view->messages = '<div class="alert alert-error"><a class="close" data-dismiss="alert" href="#">×</a>
   <h4 class="alert-heading">No Access!</h4>You do not have access to this resource.</div>';
+    			$form->removeDecorator('htmlTag');
     			$this->view->form = $form;
     		}
     	} else {
+    		$form->removeDecorator('htmlTag');
     		$this->view->form = $form;
     	}
     	

@@ -43,7 +43,7 @@ class TicketsController extends Zend_Controller_Action
     			$this->view->headScript()->appendScript("$(function() {
 		$('.datePicker').datepicker();
 	});");
-    			
+    			$form->removeDecorator('htmlTag');
     			$this->view->form = $form;
     		}
     	} else {

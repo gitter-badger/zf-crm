@@ -10,55 +10,64 @@ class CRM_Form_AddCustomer extends Zend_Form
     	
     	$this->addElement('text','fname',array(
     			'required'=>true,
+    			'label'=>'First Name',
     			'placeholder'=>'First Name',
     			'filters' => array('StringTrim')
     	));
     	
     	$this->addElement('text','lname',array(
     			'required'=>true,
+    			'label'=>'Last Name',
     			'placeholder'=>'Last Name',
     			'filters' => array('StringTrim')
     	));
     	
     	$this->addElement('text','address1',array(
     			'required'=>true,
+    			'label' => 'Address 1',
     			'placeholder'=>'Address 1',
     			'filters' => array('StringTrim')
     	));
     	
     	$this->addElement('text','address2',array(
+    			'label'=>'Address 2',
     			'placeholder'=>'Address 2',
     			'filters' => array('StringTrim')
     	));
     	$this->addElement('text','city',array(
     			'required'=>true,
+    			'label'=> 'City',
     			'placeholder'=>'City',
     			'filters' => array('StringTrim')
     	));
     	
     	$this->addElement('select','state',array(
+    			'label' => 'State',
     			'required'=>true,
     	));
     	
     	$this->addElement('text','zip',array(
+    			'label'=> 'Zip',
     			'required'=>true,
     			'placeholder'=>'Zip Code (12345)',
     			'filters' => array('StringTrim')
     	));
     	
     	$this->addElement('text','phone',array(
+    			'label'=> 'Phone',
     			'placeholder'=>'Phone i.e. 419-555-1998',
     			'filters' => array('StringTrim')
     	));
     	
     	$this->addElement('text','mobile',array(
+    			'label' => 'Mobile',
     			'placeholder'=>'Mobile i.e. 419-555-1999',
     			'filters' => array('StringTrim')
     	));
     	
-    	$this->addElement('submit','submit',array(
+    	$this->addElement('submit','Submit',array(
     			'ignore' => true,
-    			'label' => 'Submit',
+    			'value' => 'Submit',
     			'class' => "btn",
     	));
     	
@@ -121,6 +130,15 @@ class CRM_Form_AddCustomer extends Zend_Form
     	}
     	
     	$states->setValue('OH');
+    	$arrElements = $this->getElements();
+    	//var_dump($arrElements);
+    	foreach($arrElements as $element){
+    		if($element->helper != 'formSubmit'){
+    			$element->setDecorators(array('ViewHelper','Label'));
+    		} else {
+    			$element->setDecorators(array('ViewHelper'));
+    		}
+    	}
     }
 
 

@@ -35,6 +35,7 @@ class CustomersController extends Zend_Controller_Action
     				$this->view->messages = "<div class='alert alert-success'><h4 class='alert-heading'>Success!</h4>Successfully added a customer click <a href='/tickets/add/guid/".$cguid."'>here</a> to add a ticket.</div>";
     			} 
     		} else {
+    			$form->removeDecorator('htmlTag');
     			$this->view->form = $form;
     		}
     	} else {
