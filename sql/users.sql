@@ -30,13 +30,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `guid` varchar(32) NOT NULL,
   `rguid` varchar(32) NOT NULL,
+  `gguid` varchar(32) NOT NULL,
   `username` varchar(100) NOT NULL,
   `pwd` varchar(32) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `users`
