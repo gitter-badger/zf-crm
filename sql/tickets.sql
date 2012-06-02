@@ -32,12 +32,14 @@ CREATE TABLE IF NOT EXISTS `tickets` (
   `cguid` varchar(32) NOT NULL,
   `uguid` varchar(32) DEFAULT NULL,
   `desc` text NOT NULL,
-  `date_called` date NOT NULL,
+  `solution` text,
+  `date_called` date DEFAULT NULL,
   `date_scheduled` date DEFAULT NULL,
   `device_code` varchar(7) DEFAULT NULL,
   `is_open` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
