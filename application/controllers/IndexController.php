@@ -30,6 +30,7 @@ class IndexController extends Zend_Controller_Action
     	$auth = Zend_Auth::getInstance();
     	if($auth->hasIdentity()){
     		if($this->getRequest()->getPost()){
+    			// Search Customers based on keyword
     			$mapper = new CRM_Model_CustomersMapper();
     			$this->view->entries = $mapper->findByKeyword($this->getRequest()->getPost('keyword'));
     		}

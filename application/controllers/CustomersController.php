@@ -58,7 +58,28 @@ class CustomersController extends Zend_Controller_Action
 
     public function editAction()
     {
-        // action body
+    	$auth = Zend_Auth::getInstance();
+    	if($auth->hasIdentity()){
+    		$mapper = new CRM_Model_CustomersMapper();
+    		$form = new CRM_Form_EditCustomer();
+    		if($this->getRequest()->getPost()){
+    			$c = new CRM_Model_Customers($this->getRequest()->getPost());
+    			$c->setGuid($this->getRequest()->getPost('guid'));
+    			$cguid = $mapper->save($c);
+    			$this->view->messages = "<div class='alert alert-info'><h4 class='alert-heading'>Success!</h4>Successfully UPDATED a customer click <a href='/tickets/add/guid/".$this->getRequest()->getPost('guid')."'>here</a> to add a ticket.</div>";
+    		} else {
+    			$guid = $this->getRequest()->getParam('guid');
+    			$customer = $mapper->findByGuid($guid);
+    			$form->setElementFilters(array());
+    			$this->_repopulateForm($form, $customer);
+    			$form->removeDecorator('htmlTag');
+	        	$this->view->form = $form;
+    		}
+    		// Uncomment below after save is successful
+    		//$this->_helper->redirector->gotoUrl('/customers');
+    	} else {
+    		$this->_helper->redirector->gotoUrl('/');
+    	}
     }
     
     public function labelsAction()

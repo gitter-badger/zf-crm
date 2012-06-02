@@ -5,7 +5,7 @@
 				<tr>
 					<th>Name</th>
 					<th>Address</th>
-					<th>Add Ticket | Delete</th>
+					<th>Add Ticket | Delete | Edit</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -22,7 +22,7 @@
 						$info .= "(p) ".$entry->getPhone() ."<br/>";
 						$info .= "(m) ".$entry->getMobile();
 						echo "\n\t\t\t\t\t<td>$info</td>";
-						echo "\n\t\t\t\t\t<td><a class='btn btn-primary' href='/tickets/add/guid/".$entry->getGuid()."'><i class='icon-plus icon-white'></i> Ticket</a> <a class='btn btn-danger' href='/customers/delete/guid/".$entry->getGuid()."'><i class='icon-remove icon-white'></i> Delete</a></td>";
+						echo "\n\t\t\t\t\t<td><a class='btn btn-primary' href='/tickets/add/guid/".$entry->getGuid()."'><i class='icon-plus icon-white'></i> Ticket</a> <a class='btn btn-danger' href='/customers/delete/guid/".$entry->getGuid()."'><i class='icon-remove icon-white'></i> Delete</a> <a class='btn btn-info' href='/customers/edit/guid/".$entry->getGuid()."'><i class='icon-pencil icon-white'></i> Edit</a></td>";
 						echo "\n\t\t\t\t</tr>";
 					}
 				} else {

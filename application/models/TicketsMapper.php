@@ -99,6 +99,7 @@ class CRM_Model_TicketsMapper
 		$resultSet = $this->getDbTable()->fetchAll(
 				$this->getDbTable()->select()
 				->where('uguid = ?',$id)
+				->where('is_open = 1')
 		);
 		$entries = array();
 		foreach($resultSet as $row){

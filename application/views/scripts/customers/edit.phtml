@@ -1,4 +1,13 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Customers</b> and script/action name <b>edit</b></p>
+<div class="row">
+	<div class="span4 offset4">
+		<?php 
+		if($this->messages){
+			echo $this->messages;
+		} else {
+		?>
+		<h2>Edit Customer</h2>
+		<?php echo $this->form;
+		}
+		?>
+	</div>
 </div>

@@ -39,7 +39,7 @@ class CRM_Model_CustomersMapper
 				'phone' => $c->getPhone(),
 				'mobile'=> $c->getMobile(),
 		);
-		if(null === ($id = $c->getId())){
+		if(null === ($id = $c->getId()) && null === ($guid = $c->getGuid())){
 			$data['guid'] = md5(microtime()+rand());
 			$this->getDbTable()->insert($data);
 			return $data['guid'];

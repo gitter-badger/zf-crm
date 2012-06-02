@@ -39,6 +39,7 @@
         <formFile formName="UserEdit"/>
         <formFile formName="AddCustomer"/>
         <formFile formName="AddTicket"/>
+        <formFile formName="EditCustomer"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
