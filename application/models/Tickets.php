@@ -7,6 +7,7 @@ class CRM_Model_Tickets
 	protected $_cguid;
 	protected $_uguid;
 	protected $_desc;
+	protected $_solution;
 	protected $_date_called;
 	protected $_date_scheduled;
 	protected $_device_code;
@@ -102,6 +103,17 @@ class CRM_Model_Tickets
 	public function getDesc()
 	{
 		return $this->_desc;
+	}
+	
+	public function setSolution($text)
+	{
+		$this->_solution = (string) $text;
+		return $this;
+	}
+	
+	public function getSolution()
+	{
+		return $this->_solution;
 	}
 	
 	public function setDatecalled($date)

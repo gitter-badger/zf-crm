@@ -40,6 +40,15 @@ class CRM_Form_AddTicket extends Zend_Form
 //     			'filters' => array('StringTrim')
 //     	));
 
+    	$this->addElement('textarea','solution',array(
+    			'required'=>false,
+    			'label'=>'Solution',
+    			'placeholder'=>'Solution',
+    			'rows' => 10,
+    			'class' => 'span5',
+    			'filters' => array('StringTrim')
+    	));
+
     	$this->addElement('submit','Submit',array(
     			'ignore' => true,
     			'value' => 'Submit',

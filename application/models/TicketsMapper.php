@@ -30,6 +30,7 @@ class CRM_Model_TicketsMapper
 				'cguid' => $ticket->getCguid(),
 				'uguid' => $ticket->getUguid(),
 				'desc'	=> $ticket->getDesc(),
+				'solution' => $ticket->getSolution(),
 				'date_called' => $ticket->getDatecalled(),
 				'date_scheduled'  => $ticket->getDatescheduled(),
 				'device_code'	=> $ticket->getDevicecode(),
@@ -85,6 +86,7 @@ class CRM_Model_TicketsMapper
 			->setCguid($row->cguid)
 			->setUguid($row->uguid)
 			->setDesc($row->desc)
+			->setSolution($row->solution)
 			->setDatecalled($row->date_called)
 			->setDatescheduled($row->date_scheduled)
 			->setDevicecode($row->device_code)
@@ -109,6 +111,7 @@ class CRM_Model_TicketsMapper
 			->setCguid($row->cguid)
 			->setUguid($row->uguid)
 			->setDesc($row->desc)
+			->setSolution($row->solution)
 			->setDatecalled($row->date_called)
 			->setDatescheduled($row->date_scheduled)
 			->setDevicecode($row->device_code)
@@ -132,6 +135,7 @@ class CRM_Model_TicketsMapper
 			->setCguid($row->cguid)
 			->setUguid($row->uguid)
 			->setDesc($row->desc)
+			->setSolution($row->solution)
 			->setDatecalled($row->date_called)
 			->setDatescheduled($row->date_scheduled)
 			->setDevicecode($row->device_code)
