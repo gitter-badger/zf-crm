@@ -44,6 +44,30 @@ class CRM_Model_TicketsMapper
 		}
 	}
 	
+	public function findByGuid($id)
+	{
+		$result = $this->getDbTable()->fetchRow(
+				$this->getDbTable()->select()
+				->where('guid = ?',$id)
+		);
+		
+		if($result == null){
+			return;
+		}
+		$entry = new CRM_Model_Tickets();
+		$entry->setId($result->id)
+		->setGuid($result->guid)
+		->setCguid($result->cguid)
+		->setUguid($result->uguid)
+		->setDesc($result->desc)
+		->setSolution($result->solution)
+		->setDatecalled($result->date_called)
+		->setDatescheduled($result->date_scheduled)
+		->setDevicecode($result->device_code)
+		->setIsopen($result->is_open);
+		return $entry;
+	}
+	
 	public function closeByGuid($id)
 	{
 		$result = $this->getDbTable()->fetchRow(

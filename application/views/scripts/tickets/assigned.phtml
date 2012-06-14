@@ -21,7 +21,11 @@
 					echo "\n\t\t\t\t\t<td>".$entry->getDesc()."</td>";
 					echo "\n\t\t\t\t\t<td>".$entry->getDatecalled()."</td>";
 					echo "\n\t\t\t\t\t<td>".$entry->getDatescheduled()."</td>";
-					echo "\n\t\t\t\t\t<td><a class='btn btn-danger' href='/tickets/close/guid/".$entry->getGuid()."'><i class='icon-ok icon-white'></i> Close</a>  <a class='btn btn-primary' href='/tickets/edit/guid/".$entry->getGuid()."'><i class='icon-calendar icon-white'></i> Schedule</a></td>";
+					echo "\n\t\t\t\t\t<td><a class='btn btn-danger' href='/tickets/close/guid/".$entry->getGuid()."'><i class='icon-ok icon-white'></i> Close</a> <a class='btn btn-success' href='/tickets/edit/guid/".$entry->getGuid()."'><i class='icon-ok icon-white'></i> Edit</a>";
+					if("0000-00-00" === $entry->getDatescheduled()){
+						echo " <a class='btn btn-primary' href='/tickets/schedule/guid/".$entry->getGuid()."'><i class='icon-calendar icon-white'></i> Schedule</a>";
+					}
+					echo "</td>";
 					echo "\n\t\t\t\t</tr>";
 				}
 			} else {

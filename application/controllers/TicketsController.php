@@ -72,12 +72,38 @@ class TicketsController extends Zend_Controller_Action
     	$auth = Zend_Auth::getInstance();
     	if($auth->hasIdentity()){
     		// Edit/Solve Ticket
-    		$guid = $this->getRequest()->getParam('guid');
+    		$mapper = new CRM_Model_TicketsMapper();
+    		$form = new CRM_Form_EditTicket();
+    		if($this->getRequest()->getPost()){
+    			$t = new CRM_Model_Tickets($this->getRequest()->getPost());
+    			$t->setGuid($this->getRequest()->getPost('guid'));
+    			$t->setIsopen(0);
+    			$cguid = $mapper->save($t);
+    			//$this->view->messages = "<div class='alert alert-info'><h4 class='alert-heading'>Success!</h4>Successfully UPDATED a customer click <a href='/tickets/add/guid/".$this->getRequest()->getPost('guid')."'>here</a> to add a ticket.</div>";
+    		} else {
+    			$guid = $this->getRequest()->getParam('guid');
+    			$ticket = $mapper->findByGuid($guid);
+    			$form->setElementFilters(array());
+    			$this->_repopulateForm($form, $customer);
+    			$form->removeDecorator('htmlTag');
+    			$this->view->form = $form;
+    		}
     	} else {
     		$this->_helper->redirector->gotoUrl('/');
     	}
-    	
     }
+    
+    public function scheduleAction()
+    {
+    	$auth = Zend_Auth::getInstance();
+    	if($auth->hasIdentity()){
+    		$guid = $this->getRequest()->getParam('guid');
+    		$ticket = $mapper->findByGuid($guid);
+    	} else {
+    		$this->_helper->redirector->gotoUrl('/');
+    	}
+    }
+    
     public function assignedAction()
     {
     	$auth = Zend_Auth::getInstance();
@@ -147,7 +173,20 @@ class TicketsController extends Zend_Controller_Action
     	}
     }
 
-
+    protected function _repopulateForm($form, $entry)
+    {
+    	$values = array(
+    			'id'   		=> $entry->id,
+    			'guid' 		=> $entry->guid,
+    			'desc'		=> $entry->desc,
+    			'datecalled'		=> $entry->datecalled,
+    			'datescheduled'	=> $entry->datescheduled,
+    			'solution'  => $entry->solution,
+    			'uguid'		=> $entry->uguid,
+    	);
+    	//print_r($values);
+    	$form->populate($values);
+    }
 }
 
 

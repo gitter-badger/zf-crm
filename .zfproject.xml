@@ -111,6 +111,12 @@
           <viewControllerScriptsDirectory forControllerName="Tickets">
             <viewScriptFile forActionName="print"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Tickets">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Tickets">
+            <viewScriptFile forActionName="schedule"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
