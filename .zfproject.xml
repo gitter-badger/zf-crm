@@ -40,6 +40,7 @@
         <formFile formName="AddCustomer"/>
         <formFile formName="AddTicket"/>
         <formFile formName="EditCustomer"/>
+        <formFile formName="EditTicket"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
