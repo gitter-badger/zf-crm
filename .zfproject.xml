@@ -104,6 +104,9 @@
           <viewControllerScriptsDirectory forControllerName="Customers">
             <viewScriptFile forActionName="edit"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Tickets">
+            <viewScriptFile forActionName="view"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>

@@ -71,6 +71,7 @@ class TicketsController extends Zend_Controller_Action
     {
     	$auth = Zend_Auth::getInstance();
     	if($auth->hasIdentity()){
+    		// Edit/Solve Ticket
     		$guid = $this->getRequest()->getParam('guid');
     	} else {
     		$this->_helper->redirector->gotoUrl('/');
@@ -105,6 +106,13 @@ class TicketsController extends Zend_Controller_Action
     	} else {
     		$this->_helper->redirector->gotoUrl('/');
     	}
+    }
+    
+    public function viewAction()
+    {
+    	// View Single ticket based on ticket guid
+    	$tguid = $this->getRequest()->getParam('guid');
+    	
     }
     
     public function closeAction()

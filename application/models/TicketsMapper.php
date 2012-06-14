@@ -125,8 +125,7 @@ class CRM_Model_TicketsMapper
 	{
 		$search = $this->getDbTable()->select()
 		->where('is_open = ?', $flag)
-		->orWhere('`desc` LIKE ?',"%".$kw."%")
-		->orWhere('solution LIKE ?',"%".$kw."%");
+		->Where('`desc` LIKE "%'.$kw.'%" OR solution LIKE "%'.$kw.'%"');
 		
 		$resultSet = $this->getDbTable()->fetchAll($search);
 		

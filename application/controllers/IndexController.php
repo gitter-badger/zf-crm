@@ -46,9 +46,11 @@ class IndexController extends Zend_Controller_Action
     				if("otickets" === $this->getRequest()->getPost('searchtype')){
     					// Open Tickets
     					$this->view->entries = $mapper->findByKeyword($this->getRequest()->getPost('keyword'));
+    					$this->view->ticket = "Open";
     				} else {
     					// Closed Tickets
     					$this->view->entries = $mapper->findByKeyword($this->getRequest()->getPost('keyword'),0);
+    					$this->view->ticket = "Closed";
     				}
     			}
     		}
