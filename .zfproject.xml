@@ -107,6 +107,9 @@
           <viewControllerScriptsDirectory forControllerName="Tickets">
             <viewScriptFile forActionName="view"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Tickets">
+            <viewScriptFile forActionName="print"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>

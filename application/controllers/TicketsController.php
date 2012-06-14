@@ -130,6 +130,22 @@ class TicketsController extends Zend_Controller_Action
     		$this->_helper->redirector->gotoUrl('/');
     	}
     }
+    
+    public function printAction()
+    {
+    	$auth = Zend_Auth::getInstance();
+    	if($auth->hasIdentity()){
+    		$this->view->headScript()->appendScript("$('.navbar').hide();");
+    		$mapper = new CRM_Model_TicketsMapper();
+    		$cMapper = new CRM_Model_CustomersMapper();
+    		$uMapper = new CRM_Model_UsersMapper();
+    		$this->view->customers = $cMapper->fetchAllForTickets();
+    		$this->view->users = $uMapper->fetchAllForTickets();
+    		$this->view->entries = $mapper->fetchOpen();
+    	} else {
+    		$this->_helper->redirector->gotoUrl('/');
+    	}
+    }
 
 
 }
