@@ -121,6 +121,37 @@ class CRM_Model_TicketsMapper
 		return $entries;
 	}
 	
+	public function findByKeyword($kw,$flag=1)
+	{
+		$search = $this->getDbTable()->select()
+		->where('is_open = ?', $flag)
+		->orWhere('`desc` LIKE ?',"%".$kw."%")
+		->orWhere('solution LIKE ?',"%".$kw."%");
+		
+		$resultSet = $this->getDbTable()->fetchAll($search);
+		
+		if(count($resultSet) > 0){
+			$entries = array();
+			foreach($resultSet as $row){
+				$entry = new CRM_Model_Tickets();
+				$entry->setId($row->id)
+				->setGuid($row->guid)
+				->setCguid($row->cguid)
+				->setUguid($row->uguid)
+				->setDesc($row->desc)
+				->setSolution($row->solution)
+				->setDatecalled($row->date_called)
+				->setDatescheduled($row->date_scheduled)
+				->setDevicecode($row->device_code)
+				->setIsopen($row->is_open);
+				$entries[] = $entry;
+			}
+			return $entries;
+		} else {
+			return false;
+		}
+	}
+	
 	public function fetchOpen()
 	{
 		$resultSet = $this->getDbTable()->fetchAll(

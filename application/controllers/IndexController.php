@@ -30,9 +30,27 @@ class IndexController extends Zend_Controller_Action
     	$auth = Zend_Auth::getInstance();
     	if($auth->hasIdentity()){
     		if($this->getRequest()->getPost()){
-    			// Search Customers based on keyword
-    			$mapper = new CRM_Model_CustomersMapper();
-    			$this->view->entries = $mapper->findByKeyword($this->getRequest()->getPost('keyword'));
+    			if("customer" === $this->getRequest()->getPost('searchtype')){
+    				$this->view->iscustomer = true;
+	    			// Search Customers based on keyword
+	    			$mapper = new CRM_Model_CustomersMapper();
+	    			$this->view->entries = $mapper->findByKeyword($this->getRequest()->getPost('keyword'));
+    			} else {
+    				$this->view->iscustomer = false;
+    				// Search Tickets based on keyword
+    				$mapper = new CRM_Model_TicketsMapper();
+    				$cMapper = new CRM_Model_CustomersMapper();
+    				$uMapper = new CRM_Model_UsersMapper();
+    				$this->view->customers = $cMapper->fetchAllForTickets();
+    				$this->view->users = $uMapper->fetchAllForTickets();
+    				if("otickets" === $this->getRequest()->getPost('searchtype')){
+    					// Open Tickets
+    					$this->view->entries = $mapper->findByKeyword($this->getRequest()->getPost('keyword'));
+    				} else {
+    					// Closed Tickets
+    					$this->view->entries = $mapper->findByKeyword($this->getRequest()->getPost('keyword'),0);
+    				}
+    			}
     		}
     	} else {
     		$this->_helper->redirector->gotoUrl('/');

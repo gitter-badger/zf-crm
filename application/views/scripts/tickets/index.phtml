@@ -25,7 +25,11 @@
 					echo "\n\t\t\t\t\t<td>".$entry->getDesc()."</td>";
 					echo "\n\t\t\t\t\t<td>".$entry->getDatecalled()."</td>";
 					echo "\n\t\t\t\t\t<td>".$user."</td>";
-					echo "\n\t\t\t\t\t<td><a class='btn' href='/tickets/grab/guid/".$entry->getGuid()."'><i class='icon-ok'></i> Grab</a></td>";
+					if("Not Assigned" === $user){
+						echo "\n\t\t\t\t\t<td><a class='btn' href='/tickets/grab/guid/".$entry->getGuid()."'><i class='icon-ok'></i> Grab</a></td>";
+					} else {
+						echo "\n\t\t\t\t\t<td><a class='btn' href='/tickets/view/guid/".$entry->getGuid()."'><i class='icon-eye-open'></i> View Ticket</a></td>";
+					}
 					echo "\n\t\t\t\t</tr>";
 				}
 			} else {

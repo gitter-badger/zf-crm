@@ -1,6 +1,9 @@
 <div class="row">
 	<div class="span12">
 		<table class="table table-striped table-bordered">
+		<?php 
+		if($this->iscustomer){
+		?>
 		<thead>
 			<tr>
 				<th>Name</th>
@@ -30,6 +33,48 @@
 		}
 		?>
 		</tbody>
+		<?php 
+		} else {
+		?>
+		<thead>
+				<tr>
+					<th>Customer</th>
+					<th>Description</th>
+					<th>Date Called</th>
+					<th>Assigned To</th>
+					<th>Grab Ticket</th>
+				</tr>
+		</thead>
+		<tbody>
+		<?php 
+		if($this->entries){
+			foreach($this->entries as $entry){
+				$customer = $this->customers[$entry->getCguid()];
+				if($entry->getUguid()){
+					$user = $this->users[$entry->getUguid()];
+				} else {
+					$user = "Not Assigned";
+				}
+				echo "\n\t\t\t\t<tr>";
+				echo "\n\t\t\t\t\t<td>".$customer."</td>";
+				echo "\n\t\t\t\t\t<td>".$entry->getDesc()."</td>";
+				echo "\n\t\t\t\t\t<td>".$entry->getDatecalled()."</td>";
+				echo "\n\t\t\t\t\t<td>".$user."</td>";
+				if("Not Assigned" === $user){
+					echo "\n\t\t\t\t\t<td><a class='btn' href='/tickets/grab/guid/".$entry->getGuid()."'><i class='icon-ok'></i> Grab</a></td>";
+				} else {
+					echo "\n\t\t\t\t\t<td><a class='btn' href='/tickets/view/guid/".$entry->getGuid()."'><i class='icon-eye-open'></i> View Ticket</a></td>";
+				}
+				echo "\n\t\t\t\t</tr>";
+			}
+		} else {
+			echo "<tr><td colspan='5'>No entries found.</td></tr>";
+		}
+		?>
+		</tbody>
+		<?php 
+		}
+		?>
 		</table>
 	</div>
 </div>

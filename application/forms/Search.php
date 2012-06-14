@@ -14,11 +14,19 @@ class CRM_Form_Search extends Zend_Form
     			'filters' => array('StringTrim')
     	));
     	
+    	$this->addElement('radio','searchtype',array(
+    			'required'=>true,	
+    	));
+    	
     	$this->addElement('submit','Submit',array(
     			'ignore' => true,
     			'label' => 'Submit',
     			'class' => "btn",
     	));
+    	
+    	$st = $this->getElement("searchtype");
+    	$st->addMultiOptions(array('customer'=>'Customer', 'otickets'=>'Open Tickets','ctickets'=>'Closed Tickets'));
+    	$st->setValue('customer');
     }
 
 
