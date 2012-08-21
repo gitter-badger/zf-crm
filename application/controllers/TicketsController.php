@@ -136,8 +136,17 @@ class TicketsController extends Zend_Controller_Action
     
     public function viewAction()
     {
-    	// View Single ticket based on ticket guid
-    	$tguid = $this->getRequest()->getParam('guid');
+    	$auth = Zend_Auth::getInstance();
+    	if($auth->hasIdentity()){
+	    	// View Single ticket based on ticket guid
+	    	$tMap = new CRM_Model_TicketsMapper();
+	    	
+	    	$tguid = $this->getRequest()->getParam('guid');
+	    	$ticket = $tMap->findByGuid($tguid);
+	    	$this->view->ticket = $ticket;
+    	} else {
+    		$this->_helper->redirector->gotoUrl('/');
+    	}
     	
     }
     
