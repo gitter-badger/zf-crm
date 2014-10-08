@@ -1,5 +1,6 @@
 ZF-CRM
 ======
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/marcusmyers/zf-crm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Based off of Zend Framework 1.11.11
 
